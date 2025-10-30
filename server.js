@@ -26,7 +26,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS if you're making requests from a different origin
 
+// Serve client from public folder and mount asset directories
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/assets", express.static(path.join(__dirname, "assets")));
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/gif", express.static(path.join(__dirname, "gif")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 // Create MySQL connection
 const db = mysql.createConnection({
   host: '46.202.167.1',
@@ -730,3 +737,9 @@ async function generate_users() {
 }
 // Start generating users
 generate_users();
+
+// Start HTTP server for client-side access
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`HTTP server running on http://0.0.0.0:${PORT}`);
+});
