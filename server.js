@@ -1,6 +1,6 @@
 const io = require("socket.io")(3030, {
   cors: {
-    //origin: process.env.CORS_ORIGINE || "http://127.0.0.1:5501",
+    //origin: process.env.CORS_ORIGINE || "http://127.0.0.1:5501", sdasdas
     //origin:
     //  process.env.CORS_ORIGINE || "https://bottlegame.playislandrush.com/",
     origin: "*",
@@ -29,10 +29,10 @@ app.use(cors()); // Enable CORS if you're making requests from a different origi
 app.use(express.static(path.join(__dirname, "public")));
 // Create MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'MAkavindu@1998',
-  database: 'nadeera_game', // Adjust according to your database name
+  host: '46.202.167.1',
+  user: 'remoteuser',
+  password: 'StrongPassword123!',
+  database: 'nadeera_game'
 });
 
 // Connect to MySQL
