@@ -1,0 +1,18 @@
+{
+  "name": "game-simulation",
+  "version": "1.0.0",
+  "description": "Simulation tool for color pattern game",
+  "main": "simulation.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.7.2"
+  }
+}
