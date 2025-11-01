@@ -80,8 +80,10 @@ var palletclorpaths = [
 ];
 var colorObject = [];
 var clickedSlot = null;
-const socket = io("http://localhost:3030");
-//const socket = io("https://bottlegame.playislandrush.com/");
+// Auto-detect server URL - works for both localhost and VPS
+const socketURL = window.location.origin;
+const socket = io(socketURL);
+// Alternative: const socket = io("https://bottlegame.playislandrush.com/");
 
 socket.on("connect", () => {
   console.log("Connected to the server");
