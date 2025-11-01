@@ -1,11 +1,4 @@
-const io = require("socket.io")(3030, {
-  cors: {
-    //origin: process.env.CORS_ORIGINE || "http://127.0.0.1:5501", sdasdas
-    //origin:
-    //  process.env.CORS_ORIGINE || "https://bottlegame.playislandrush.com/",
-    origin: "*",
-  },
-});
+const http = require("http");
 var hiscolorStores = [
   ["yellow", "blue", "green", "cyan", "red"],
   ["blue", "yellow", "cyan", "red", "green"],
@@ -33,6 +26,14 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/gif", express.static(path.join(__dirname, "gif")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Create HTTP server and attach Socket.IO on the same port (3000)
+const server = http.createServer(app);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
 });
 // Create MySQL connection
 const db = mysql.createConnection({
@@ -738,8 +739,8 @@ async function generate_users() {
 // Start generating users
 generate_users();
 
-// Start HTTP server for client-side access
+// Start HTTP+WebSocket server for client-side access
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`HTTP server running on http://0.0.0.0:${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server (HTTP+Socket.IO) running on http://0.0.0.0:${PORT}`);
 });
