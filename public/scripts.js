@@ -80,7 +80,7 @@ var palletclorpaths = [
 ];
 var colorObject = [];
 var clickedSlot = null;
-const socket = io("http://localhost:3000");
+const socket = io("http://localhost:3030");
 //const socket = io("https://bottlegame.playislandrush.com/");
 
 socket.on("connect", () => {
